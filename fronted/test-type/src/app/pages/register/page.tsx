@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import RegisterForm from '@/app/components/RegisterForm';
 import registerUser from '@/app/services/registerService';
 
-// Definimos la interfaz para los props del componente RegisterForm
 interface RegisterFormProps {
   onSubmit: (name: string, email: string, password: string) => Promise<void>;
   error: string;
@@ -43,17 +42,17 @@ const LoginLink = styled.a`
 `;
 
 const RegisterPage: React.FC = () => {
-  const [error, setError] = useState<string>(''); // Estado tipado
+  const [error, setError] = useState<string>(''); 
   const router = useRouter();
 
-  // Función para manejar el registro
+  
   const handleRegister = async (name: string, email: string, password: string) => {
     try {
       await registerUser(name, email, password);
-      router.push('/pages/login'); // Redirige al login después de registrar
+      router.push('/pages/login'); 
     } catch (error) {
       if (error instanceof Error) {
-        setError(error.message); // Manejamos los errores
+        setError(error.message); 
       } else {
         setError('An unexpected error occurred');
       }
@@ -66,7 +65,7 @@ const RegisterPage: React.FC = () => {
         <div>
           <Title>Crear una cuenta</Title>
         </div>
-        <RegisterForm onSubmit={handleRegister} error={error} /> {/* Tipado */}
+        <RegisterForm onSubmit={handleRegister} error={error} /> 
         <div className="text-center">
           <LoginLink href="/pages/login">¿Ya tienes una cuenta? Inicia sesión</LoginLink>
         </div>

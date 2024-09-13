@@ -1,4 +1,3 @@
-//Este componente será responsable de capturar los datos del usuario (nombre, correo electrónico, contraseña).
 "use client";
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -55,35 +54,25 @@ const ErrorText = styled.div`
   text-align: center;
 `;
 
-// Definición de la interfaz que describe las props que espera el componente RegisterForm
 interface RegisterFormProps {
-    // La función onSubmit recibe el nombre, el email y la contraseña, y no retorna ningún valor (void)
     onSubmit: (name: string, email: string, password: string) => void;
-    // Una cadena de texto para mostrar mensajes de error
     error: string;
   }
-  
-  // Definición del componente RegisterForm como un Functional Component (React.FC)
-  // que recibe props de tipo RegisterFormProps
   const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, error }) => {
-    // Definimos tres estados locales para manejar los valores del nombre, email y contraseña
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
-    // Manejador del evento de envío del formulario
+
     const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario (recargar la página)
-      onSubmit(name, email, password); // Llamar a la función onSubmit que se pasó como prop, pasando los valores del nombre, email y contraseña
+      e.preventDefault(); 
+      onSubmit(name, email, password); 
     };
   
     return (
-      // Estructura del formulario
       <Form onSubmit={handleSubmit}>
-        {/* Mostrar el mensaje de error si existe */}
         {error && <ErrorText>{error}</ErrorText>}
         <input type="hidden" name="remember" defaultValue="true" />
-        {/* Grupo de inputs para el nombre, el email y la contraseña */}
         <InputGroup>
           <Input
             id="name"
@@ -91,8 +80,8 @@ interface RegisterFormProps {
             type="text"
             required
             placeholder="Nombre"
-            value={name} // Valor actual del nombre
-            onChange={(e) => setName(e.target.value)} // Actualizar el estado cuando se cambie el valor del nombre
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
           />
           <Input
             id="email-address"
@@ -101,8 +90,8 @@ interface RegisterFormProps {
             autoComplete="email"
             required
             placeholder="Correo electrónico"
-            value={email} // Valor actual del email
-            onChange={(e) => setEmail(e.target.value)} // Actualizar el estado cuando se cambie el valor del email
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
           />
           <Input
             id="password"
@@ -111,11 +100,11 @@ interface RegisterFormProps {
             autoComplete="new-password"
             required
             placeholder="Contraseña"
-            value={password} // Valor actual de la contraseña
-            onChange={(e) => setPassword(e.target.value)} // Actualizar el estado cuando se cambie el valor de la contraseña
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
           />
         </InputGroup>
-        {/* Botón para enviar el formulario */}
+
         <SubmitButton type="submit">Registrarse</SubmitButton>
       </Form>
     );

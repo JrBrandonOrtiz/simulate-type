@@ -3,50 +3,44 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import LoginUser from '@/app/services/authService'; // Importamos la función loginUser.
-import LoginForm from '../../components/LoginForm'; // Importamos el componente LoginForm.
+import LoginUser from '@/app/services/authService'; 
+import LoginForm from '../../components/LoginForm'; 
 
-// Definimos la interfaz para los datos que regresa el servicio de autenticación.
 interface AuthResponse {
   token: string;
 }
 
-// Definimos la interfaz para el componente LoginForm
 interface LoginFormProps {
   onSubmit: (email: string, password: string) => Promise<void>;
   error: string;
 }
 
 const LoginPage: React.FC = () => {
-  const [error, setError] = useState<string>(''); // Estado para manejar los mensajes de error.
-  const router = useRouter(); // Hook para redirigir.
+  const [error, setError] = useState<string>('');
+  const router = useRouter(); 
 
-  // Función para manejar el inicio de sesión.
   const handleLogin = async (email: string, password: string) => {
     try {
-      const data: AuthResponse = await LoginUser(email, password); // Llamamos a la función loginUser con tipado.
-      localStorage.setItem('token', data.token); // Guardamos el token en localStorage.
-      router.push('/pages/home'); // Redirigimos al usuario tras el login exitoso.
+      const data: AuthResponse = await LoginUser(email, password); 
+      localStorage.setItem('token', data.token); 
+      router.push('/pages/home');
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message); // Si ocurre un error, lo mostramos.
+        setError(err.message); 
       } else {
-        setError('An unexpected error occurred'); // Mensaje genérico para errores inesperados.
+        setError('An unexpected error occurred'); 
       }
     }
   };
 
-  // Renderizamos el componente de la página de inicio de sesión.
   return (
     <Container>
       <FormWrapper>
         <div>
-          <Title>Iniciar sesión</Title> {/* Título de la página de inicio de sesión */}
+          <Title>Iniciar sesión</Title>
         </div>
-        {/* Formulario de inicio de sesión, pasamos la función handleLogin y el estado de error */}
-        <LoginForm onSubmit={handleLogin} error={error} /> {/* Tipado */}
+        <LoginForm onSubmit={handleLogin} error={error} /> 
         <div className="text-center">
-          {/* Enlace para redirigir a la página de registro */}
           <LoginLink href="/pages/register">¿No tienes una cuenta? Regístrate</LoginLink>
         </div>
       </FormWrapper>
@@ -56,7 +50,7 @@ const LoginPage: React.FC = () => {
 
 export default LoginPage;
 
-// Estilos
+
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
