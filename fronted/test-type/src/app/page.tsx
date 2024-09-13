@@ -25,7 +25,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Fondo con degradado */
+  background: linear-gradient(135deg, #6dd5ed, #2193b0); 
   padding: 3rem 1rem;
 `;
 
@@ -36,9 +36,9 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-color: #ffffff; /* Fondo blanco */
-  border-radius: 12px; /* Bordes redondeados */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Sombra */
+  background-color: #ffffff; 
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); 
   gap: 1.5rem;
 `;
 
@@ -46,7 +46,7 @@ const Heading = styled.h1`
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
-  color: #333333; /* Texto gris oscuro */
+  color: #333333; 
 `;
 
 const ButtonGroup = styled.div`
@@ -63,30 +63,30 @@ const StyledLink = styled(Link)`
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
-  background-color: #4f46e5; /* Azul */
+  background-color: #4f46e5; 
   border-radius: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); /* Sombra suave */
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); 
 
   &:hover {
-    background-color: #4338ca; /* Azul oscuro */
-    transform: translateY(-2px); /* Efecto de elevación */
+    background-color: #4338ca; 
+    transform: translateY(-2px); 
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); /* Borde de enfoque */
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); 
   }
 `;
 
 const RegisterLink = styled(StyledLink)`
-  background-color: #10b981; /* Verde */
+  background-color: #10b981;
   
   &:hover {
-    background-color: #059669; /* Verde oscuro */
+    background-color: #059669; 
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.5); /* Borde de enfoque verde */
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.5);
   }
 `;
