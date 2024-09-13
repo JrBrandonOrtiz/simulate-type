@@ -6,7 +6,7 @@ interface AuthResponse {
 
 const LoginUser = async (email: string, password: string): Promise<AuthResponse> => {
     try {
-        const response = await fetch(API_URL, { // Cambiado a API_URL
+        const response = await fetch(API_URL, { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

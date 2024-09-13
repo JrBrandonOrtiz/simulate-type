@@ -141,21 +141,26 @@ const HomePage: React.FC = () => {
     };
 
     const handleDeletePost = async (postId: number) => {
-        try {
-            const response = await fetchData<null>(`/posts/${postId}`, 'DELETE');
-
-            if (response.message === 'Deleted post correctly') {
-                setPosts(posts.filter(post => post.id !== postId));
-                setLikes(likes.filter(like => like.post_id !== postId));
-                setError('');
-            } else {
+        const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    
+        if (confirmDelete) {
+            try {
+                const response = await fetchData<null>(`/posts/${postId}`, 'DELETE');
+    
+                if (response.message === 'Deleted post correctly') {
+                    setPosts(posts.filter(post => post.id !== postId));
+                    setLikes(likes.filter(like => like.post_id !== postId));
+                    setError('');
+                } else {
+                    setError('Failed to delete post.');
+                }
+            } catch (error) {
+                console.error("Error deleting post:", error);
                 setError('Failed to delete post.');
             }
-        } catch (error) {
-            console.error("Error deleting post:", error);
-            setError('Failed to delete post.');
         }
     };
+    
 
     const handleLike = async (postId: number) => {
         try {
@@ -177,8 +182,16 @@ const HomePage: React.FC = () => {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('authToken'); 
+        router.push('/pages/login');
+    };
+
     return (
         <Container>
+            <LogoutSection>
+                <Button onClick={handleLogout}>Logout</Button>
+            </LogoutSection>
             <Section>
                 <Title>{isEditing ? 'Edit Post' : 'Create Post'}</Title>
                 <Form>
@@ -208,7 +221,6 @@ const HomePage: React.FC = () => {
                     {error && <Error>{error}</Error>}
                 </Form>
             </Section>
-
             <Section>
                 <Title>Posts</Title>
                 {posts.length === 0 ? (
@@ -244,6 +256,11 @@ const Container = styled.div`
     padding: 20px;
     background-color: #f4f4f4;
     border-radius: 8px;
+`;
+
+const LogoutSection = styled.section`
+    margin-bottom: 30px;
+    text-align: right; 
 `;
 
 const Section = styled.section`
@@ -340,4 +357,3 @@ const LikeButton = styled.button`
     font-size: 1.2rem;
     margin-left: 5px;
 `;
-
